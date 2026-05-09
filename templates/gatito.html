@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gatito Fresa</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+    <link href="https://fonts.googleapis.com/css2?family=Gloria+Hallelujah&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <div class="contenedor">
+        <div id="boton-musica">
+    toca aqui para reproducir musica 🎵
+</div>
+
+        <canvas id="canvas"></canvas>
+
+        <div class="mensaje m1">tú si te gustara la fresa</div>
+        <div class="mensaje m2">frezaid</div>
+        <div class="mensaje m3">eres una leona</div>
+        <div class="mensaje m4">ya casi tienes 20 xdxdxd</div>
+
+    </div>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+
+</body>
+</html>
+<!-- Música -->
+<audio id="musica">
+    <source src="/static/no_other_heart.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+    const musica = document.getElementById("musica");
+    const boton = document.getElementById("boton-musica");
+
+    boton.addEventListener("click", async () => {
+
+        try {
+
+            musica.volume = 0.7;
+
+            await musica.play();
+
+            boton.innerHTML = "musiquita activada :D";
+
+            setTimeout(() => {
+
+                boton.style.transition = "1s";
+                boton.style.opacity = "0";
+
+            }, 1200);
+
+        } catch(error) {
+
+            console.log(error);
+
+            boton.innerHTML = "error al reproducir 😭";
+        }
+    });
+</script>
